@@ -3,6 +3,9 @@
 In this project, the dataset of the used car was analyzed and the insights gained can be used to determine used car values and the factors affecting them.
 
 The technology stack, tools, and skills required for the project.
+Programming Languages -
+Softwares -
+Key Topics - 
 
 Applied-Statstics
 
