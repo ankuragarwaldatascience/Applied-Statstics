@@ -1,0 +1,115 @@
+Appendix: R Code
+ 
+R Commands used in Data Loading and  Data Pre-processing
+ 
+1.     The first step is to check the working directory of the R
+            Command Used : getwd()
+          > getwd()
+     	[1] "/Users/oceanandmountains"
+   	  The file skoda.csv is in oceanandmountains folder so will use this.
+ 
+     	Else the working directory can also be changed via
+     	setwd("pathtoyourworkingdirectory/folder")  	
+ 
+2.     The second step is to import the file
+Usually, we can do this by assigning a variable to our file
+> skoda = read.csv("skoda.csv")
+ 
+Or
+ 
+Alternative Method: Once the working directory is set on the right we can see the dataset, just click on that, there comes an option of Import Dataset.
+ 
+ 
+ 
+ 
+ 
+ 
+3.     The  third  step is to View the file and load it in the table format, now all our data can be viewed using the Skoda
+          	> View(skoda)
+ 
+ 
+R Commands used in EDA
+ 
+>summary(skoda)
+>Code to view the Variable and their Properties
+Function uses : str(skoda)
+>Convert chr values to factorial
+>skoda <- read.csv("skoda.csv",stringsAsFactors = TRUE)
+>barplot(table(skoda$model))
+>Code to make table of Model :
+table(skoda$model)
+>table(skoda$year)
+>   Function uses to draw year histogram
+hist(skoda$year, main = "Distribution")
+>To calculate Skew we must a package installed e1071 and loaded
+The function used to load the package:
+library(e1071)
+Function used to Calculate Skewness
+>skewness(skoda$year)
+OutPut
+[1] -1.456622 Result  : Negative Skew
+>Calculating Range,  quantile, IQR and Summary the extreme Values
+> range(skoda$price)
+> quantile(skoda$price)
+>: IQR(skoda$price)
+>summary(skoda$price)
+>boxplot(skoda$price, main="Boxplot of price" , ylab="price($)")
+>t.test(skoda$price)
+>ggplot(data = skoda, mapping = aes(x = price, y = year , color=model)) + geom_line()
+ 
+ 
+ 
+R Commands used in Hypothesis testing
+ 
+>t.test(skoda$price)
+> library(MASS)
+> h=na.omit(skoda$price)
+> pop.mean=mean(h)
+> h.sample = sample(h,30)
+> t.test(h.sample,mu=pop.mean)
+ 
+> install.packages("gginference")
+library(gginference)
+ 
+R command used in Correlation
+ 
+>Scatterplot Matrix Code
+pairs (skoda[c("model", "year" ,"price" ,"transmission" , "mileage" , "fuelType" , "mpg" ,"engineSize")])
+ 
+> Enhanced Scatterplot Matrix
+Pairs.panels (skoda[c("model", "year" ,"price" ,"transmission" , "mileage" , "fuelType" , "mpg" ,"engineSize")])
+>Install.packages(“psych”)
+>library(psych)
+>cor(skoda$price, skoda$year,
++     method = "spearman"
+x = c (skoda$year)
+> y = c (skoda$price)
+> plot(x,y)
+> abline(lm(y~x))
+> cor.test(x,y, "two.sided", "pearson")
+ 
+> > skoda$model <- as.factor(skoda$model)
+> skoda$transmission <- as.factor(skoda$transmission)
+> skoda$fuelType <- as.factor(skoda$fuelType)
+> str(skoda)
+> skoda$model <- as.numeric(skoda$model)
+> skoda$transmission <- as.numeric(skoda$transmission)
+> skoda$fuelType <- as.numeric(skoda$fuelType)
+> str(skoda)
+> corr <- cor(skoda)
+> head(round(corr,2))
+corrplot(corr,method = 'square')
+ 
+R Commands used in Regression Model
+ 
+>lm(formula = price ~ transmission + fuelType + mpg + mileage,
+    data = skoda)
+summary(ins_model)
+> ins_model <- lm( price ~ transmission + fuelType + mpg + mileage, data = skoda)
+>lm(formula = price ~ transmission + fuelType + mpg + mileage,
+    data = skoda)
+> summary(ins_model)
+ 
+Commands used in Time Series
+Time series function
+> ggplot( skoda, aes(x=year, y=price)) +geom_line() +  xlab("")
