@@ -4,11 +4,11 @@ In this project, the dataset of the used car was analyzed and the insights gaine
 
 The technology stack, tools, and skills required for the project.
 
-Programming Languages -
+Programming Languages - R Language
 
-Softwares -
+Softwares - R Studio
 
-Key Topics - 
+Key Topics - Exploratory Data Analysis, Hypothesis Testing, Poisson Distribution and time series, Correlation Analysis, Regression Analysis, Time Series Analysis.
 
 Applied-Statstics
 
